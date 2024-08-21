@@ -1,19 +1,16 @@
 import { test, expect } from '@playwright/test'
 
-test('has title', async ({ page }) => {
-  await page.goto('https://the-internet.herokuapp.com/')
+test.describe('Kmart Ecommerce - Basic Playwright Week 2', () => {
+  test('Validate title', async ({ page }) => {
+    await page.goto('https://www.kmart.co.nz/')
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/The Internet/)
-})
+    // Expect a title "to contain" a substring.
+    await expect(page).toHaveTitle(/Kmart New Zealand/)
+  })
 
-test('check dropdown list - option 1', async ({ page }) => {
-  await page.goto('https://the-internet.herokuapp.com/')
+  test('Navigate to Product category using dropdown menu', async ({ page }) => {
+    await page.goto('https://www.kmart.co.nz/')
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Dropdown' }).click()
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { level: 3 })).toBeVisible()
-  //await page.getByLabel('Please select an option').selectOption('Option 1')
+    await page.locator('[href*="#/home-and-living/"]').click()
+  })
 })
